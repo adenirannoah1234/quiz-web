@@ -69,7 +69,7 @@ function QuizForm() {
     >
       <form
         onSubmit={handleSubmit}
-        style={{ width: '500px', paddingTop: '30px' }}
+        style={{ maxWidth: '500px', paddingTop: '30px' }}
       >
         <FormControl id="questionText">
           <FormLabel>Question Text:</FormLabel>
