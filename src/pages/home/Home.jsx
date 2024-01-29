@@ -60,7 +60,13 @@ function QuizForm() {
   };
 
   return (
-    <VStack spacing={4} border="1px" borderColor="blue" padding="30px">
+    <VStack
+      spacing={4}
+      border="1px"
+      borderColor="blue"
+      padding="20px"
+      maxW="800px"
+    >
       <form
         onSubmit={handleSubmit}
         style={{ width: '500px', paddingTop: '30px' }}
