@@ -60,53 +60,45 @@ function QuizForm() {
   };
 
   return (
-    <VStack
-      spacing={4}
-      border="1px"
-      borderColor="blue"
-      padding="20px"
-      maxW="800px"
-    >
-      <form
-        onSubmit={handleSubmit}
-        style={{ maxWidth: '600px', paddingTop: '30px' }}
-      >
-        <FormControl id="questionText">
-          <FormLabel>Question Text:</FormLabel>
-          <Textarea
+    <div className="form-control">
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="questionText">Question Text:</label>
+          <textarea
+            id="questionText"
             value={questionText}
             onChange={(event) => setQuestionText(event.target.value)}
             required
           />
-        </FormControl>
-
-        {options.map((option, index) => (
-          <FormControl key={index} id={`option-${index}`}>
-            <FormLabel>Option {index + 1}</FormLabel>
-            <Input
+        </div>
+        <div className="form-group">
+          <label>Options:</label>
+          {options.map((option, index) => (
+            <input
+              key={index}
+              type="text"
               value={option}
               onChange={(event) => handleOptionChange(index, event)}
-              placeholder={`Option ${index + 1}`}
               required
             />
-          </FormControl>
-        ))}
-
-        <FormControl id="correctAnswer">
-          <FormLabel>Correct Answer</FormLabel>
-          <Select
+          ))}
+        </div>
+        <div className="form-group">
+          <label htmlFor="correctAnswer">Correct Answer:</label>
+          <select
+            id="correctAnswer"
             onChange={handleCorrectAnswerChange}
             value={correctAnswerIndex}
           >
             {options.map((option, index) => (
               <option key={index} value={index}>{`Option ${index + 1}`}</option>
             ))}
-          </Select>
-        </FormControl>
-
-        <FormControl id="difficulty">
-          <FormLabel>Difficulty</FormLabel>
-          <Select
+          </select>
+        </div>
+        <div className="form-group">
+          <label htmlFor="difficulty">Difficulty:</label>
+          <select
+            id="difficulty"
             onChange={(event) => setDifficulty(event.target.value)}
             value={difficulty}
           >
@@ -114,24 +106,21 @@ function QuizForm() {
             <option value="easy">Easy</option>
             <option value="medium">Medium</option>
             <option value="hard">Hard</option>
-          </Select>
-        </FormControl>
-
-        <FormControl id="subject">
-          <FormLabel>Subject</FormLabel>
-          <Input
+          </select>
+        </div>
+        <div className="form-group">
+          <label htmlFor="subject">Subject:</label>
+          <input
             type="text"
+            id="subject"
             value={subject}
             onChange={(event) => setSubject(event.target.value)}
             required
           />
-        </FormControl>
-
-        <Button type="submit" colorScheme="blue" style={{ marginTop: '20px' }}>
-          Submit Question
-        </Button>
+        </div>
+        <button type="submit">Submit Question</button>
       </form>
-    </VStack>
+    </div>
   );
 }
 
