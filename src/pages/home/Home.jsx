@@ -1,29 +1,32 @@
 // QuizForm.js
 
 import React, { useState } from 'react';
-import {
-  VStack,
-  Input,
-  Textarea,
-  Select,
-  Button,
-  FormControl,
-  FormLabel,
-} from '@chakra-ui/react';
+import { Alert, AlertIcon } from '@chakra-ui/react';
 
 function QuizForm() {
   const [questionText, setQuestionText] = useState('');
   const [options, setOptions] = useState(['', '', '', '']);
-  const [correctAnswerIndex, setCorrectAnswerIndex] = useState(-1);
+  const [correctAnswerIndex, setCorrectAnswerIndex] = useState(0);
   const [difficulty, setDifficulty] = useState('');
   const [subject, setSubject] = useState('');
+  const [quizAdded, setQuizAdded] = useState(false);
 
+  // for the succesfull alert
+  const handleQuizAdded = () => {
+    setQuizAdded(true);
+    setTimeout(() => {
+      setQuizAdded(false);
+    }, 5000);
+  };
+
+  // for the options
   const handleOptionChange = (index, event) => {
     const newOptions = [...options];
     newOptions[index] = event.target.value;
     setOptions(newOptions);
   };
 
+  // for the correct answer
   const handleCorrectAnswerChange = (event) => {
     setCorrectAnswerIndex(parseInt(event.target.value));
   };
@@ -42,7 +45,6 @@ function QuizForm() {
       return;
     }
 
-    // Submit the question to the database (you can handle this part later with Supabase integration)
     console.log({
       questionText,
       options,
@@ -51,7 +53,10 @@ function QuizForm() {
       subject,
     });
 
-    // Clear form fields after submission
+    // calling alert function
+    handleQuizAdded();
+
+    // this is for clearing the inputs after submission
     setQuestionText('');
     setOptions(['', '', '', '']);
     setCorrectAnswerIndex(0);
@@ -89,9 +94,9 @@ function QuizForm() {
           <select
             id="correctAnswer"
             onChange={handleCorrectAnswerChange}
-            value={correctAnswerIndex === -1 ? '' : correctAnswerIndex} // Check for -1 to indicate no option selected
+            value={correctAnswerIndex} // Check for -1 to indicate no option selected
           >
-            <option value=""> </option>
+            {/* <option value=""> </option> */}
             {options.map((option, index) => (
               <option key={index} value={index}>{`Option ${index + 1}`}</option>
             ))}
@@ -124,6 +129,12 @@ function QuizForm() {
           <button type="submit">Submit Question</button>
         </div>
       </form>
+      {quizAdded && (
+        <Alert status="success" marginTop="10px">
+          <AlertIcon />
+          Quiz added successfully!
+        </Alert>
+      )}
     </div>
   );
 }
