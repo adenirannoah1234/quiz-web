@@ -6,7 +6,7 @@ import { Alert, AlertIcon } from '@chakra-ui/react';
 function QuizForm() {
   const [questionText, setQuestionText] = useState('');
   const [options, setOptions] = useState(['', '', '', '']);
-  const [correctAnswerIndex, setCorrectAnswerIndex] = useState(0);
+  const [correctAnswerIndex, setCorrectAnswerIndex] = useState(-1);
   const [difficulty, setDifficulty] = useState('');
   const [subject, setSubject] = useState('');
   const [quizAdded, setQuizAdded] = useState(false);
@@ -94,9 +94,10 @@ function QuizForm() {
           <select
             id="correctAnswer"
             onChange={handleCorrectAnswerChange}
-            value={correctAnswerIndex} // Check for -1 to indicate no option selected
+            value={correctAnswerIndex === -1 ? '' : correctAnswerIndex}
           >
-            {/* <option value=""> </option> */}
+            <option value=""> </option>
+
             {options.map((option, index) => (
               <option key={index} value={index}>{`Option ${index + 1}`}</option>
             ))}
