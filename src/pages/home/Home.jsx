@@ -14,7 +14,7 @@ import {
 function QuizForm() {
   const [questionText, setQuestionText] = useState('');
   const [options, setOptions] = useState(['', '', '', '']);
-  const [correctAnswerIndex, setCorrectAnswerIndex] = useState(0);
+  const [correctAnswerIndex, setCorrectAnswerIndex] = useState(-1);
   const [difficulty, setDifficulty] = useState('');
   const [subject, setSubject] = useState('');
 
@@ -85,25 +85,26 @@ function QuizForm() {
           ))}
         </div>
         <div className="form-group">
-          <label htmlFor="correctAnswer">Correct Answer:</label>
+          <label htmlFor="correctAnswer"> Select Correct Answer:</label>
           <select
             id="correctAnswer"
             onChange={handleCorrectAnswerChange}
-            value={correctAnswerIndex}
+            value={correctAnswerIndex === -1 ? '' : correctAnswerIndex} // Check for -1 to indicate no option selected
           >
+            <option value=""> </option>
             {options.map((option, index) => (
               <option key={index} value={index}>{`Option ${index + 1}`}</option>
             ))}
           </select>
         </div>
         <div className="form-group">
-          <label htmlFor="difficulty">Difficulty:</label>
+          <label htmlFor="difficulty"> Select Difficulty:</label>
           <select
             id="difficulty"
             onChange={(event) => setDifficulty(event.target.value)}
             value={difficulty}
           >
-            <option value="">Select Difficulty</option>
+            <option value=""></option>
             <option value="easy">Easy</option>
             <option value="medium">Medium</option>
             <option value="hard">Hard</option>
