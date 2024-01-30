@@ -59,7 +59,7 @@ function QuizForm() {
     // this is for clearing the inputs after submission
     setQuestionText('');
     setOptions(['', '', '', '']);
-    setCorrectAnswerIndex(0);
+    setCorrectAnswerIndex(-1);
     setDifficulty('');
     setSubject('');
   };
