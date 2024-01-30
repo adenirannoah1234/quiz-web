@@ -1,4 +1,5 @@
 import './App.css';
+import Navbar from './components/navabr/Navbar';
 import QuizQuestionForm from './pages/home/Home';
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
 
   return (
     <div>
+      <Navbar />
       <QuizQuestionForm />
     </div>
   );

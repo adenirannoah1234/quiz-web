@@ -31,7 +31,7 @@ function QuizForm() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // Validation
+    // Form Validation
     if (
       questionText.trim() === '' ||
       options.some((option) => option.trim() === '') ||
@@ -61,6 +61,7 @@ function QuizForm() {
 
   return (
     <div className="form-control">
+      <h1>Add Your Quiz</h1>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="questionText">Question Text:</label>
@@ -118,7 +119,9 @@ function QuizForm() {
             required
           />
         </div>
-        <button type="submit">Submit Question</button>
+        <div className="btn">
+          <button type="submit">Submit Question</button>
+        </div>
       </form>
     </div>
   );
